@@ -1,6 +1,5 @@
-import axios from "axios"
-import { useState } from "react"
-import { useEffect } from "react"
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function citation() {
   const [citation, setCitation] = useState<any>([]);
@@ -16,7 +15,7 @@ export default function citation() {
       }
     })
     .then((response) => {
-      console.log(response.data.citation);
+      //console.log(response.data.citation);
       setCitation(response.data.citation);
       setPersonage(response.data.citation.infos.personnage);
     })
