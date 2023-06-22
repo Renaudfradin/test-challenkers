@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { Box, Button, Typography } from "@mui/material";
 
 export default function citation() {
   const [citation, setCitation] = useState<any>([]);
@@ -15,7 +17,6 @@ export default function citation() {
       }
     })
     .then((response) => {
-      //console.log(response.data.citation);
       setCitation(response.data.citation);
       setPersonage(response.data.citation.infos.personnage);
     })
@@ -27,12 +28,31 @@ export default function citation() {
   useEffect(() => {
     callApi();
   }, [ ])
-
+  
   return (
-    <div>
-      <p>{ citation['citation'] }</p>
-      <p>{ personage }</p>
-      <button onClick={() => callApi()}>Afficher une autre citation</button>
-    </div>
+    <Box sx={{
+      border: "2px solid #6303ad",
+      borderRadius: "8px",
+      padding: "15px",
+      color: "#6303ad"
+    }}>
+      <Typography
+        sx={{
+          padding: "5px 0"
+        }}
+      >{citation['citation']}</Typography>
+      <Typography
+        sx={{
+          padding: "10px 0"
+        }}
+      >{personage}</Typography>
+      <Button
+        onClick={() => callApi()}
+        sx={{
+          backgroundColor: "#ffffff",
+          color: "#6303ad"
+        }}
+      ><RemoveRedEyeIcon />Afficher une autre citation de Kaamelott</Button>
+    </Box>
   )
 }
